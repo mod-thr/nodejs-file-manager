@@ -40,8 +40,7 @@ class Web {
                 drivers = await helpers.getDriversList()
                 title = 'Drivers'
             } else {
-                const s = dir.split('/')
-                title = s[s.length - 1]
+                title = helpers.getTitle(dir)
                 contents = helpers.getDirectoryContent(dir)
                 contents = contents.map(content => {
                     return {

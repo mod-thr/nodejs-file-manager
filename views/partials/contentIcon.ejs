@@ -3,7 +3,7 @@
         <% contents.map(c => { %>
             <% if (!c.fm.isPresentable()) return %> 
             <div class="col-md-3 h-max-content content-box">
-                <a href="/?dir=<%= dir + '/' + c.content %> " class="btn btn-link text-decoration-none m-0 p-1 w-100 h-100">
+                <a href="<%= helpers.createLink(dir + '/' + c.content) %>" class="btn btn-link text-decoration-none m-0 p-1 w-100 h-100">
                     <div class="card-body m-d p-0 position-relative h-100">
                         <div class="h-75 w-100 flex-center">
                             <% if (c.fm.isFile()) { %>

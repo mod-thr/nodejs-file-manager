@@ -21,12 +21,18 @@ getCookie = name => {
     return "";
 }
 
+document.querySelectorAll('tr[data-href]').forEach(el => {
+    el.addEventListener('click', () => {
+        document.location = el.dataset.href
+    })
+})
+
 const changeViewMode = mode => {
     setCookie('viewMode', mode)
     location.reload()
 }
 
-const chamgeTheme = theme => {
+const changeTheme = theme => {
     setCookie('theme', theme)
     location.reload()
 }

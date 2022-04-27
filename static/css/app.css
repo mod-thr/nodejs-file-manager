@@ -76,3 +76,26 @@
     right: 5px;
     left:initial;
 }
+
+tr {
+    cursor: pointer;
+}
+
+.dropdown-toggle.no-arrow::after {
+    content: none;
+}
+
+.dirSearch {
+    width:25vw;
+}
+
+@media only screen and (max-width: 768px){
+    .dirSearch {
+        width:50vw;
+    }
+}
+@media only screen and (max-width: 480px){
+    .dirSearch {
+        width:75vw;
+    }
+}

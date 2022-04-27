@@ -34,3 +34,12 @@ exports.getDirectoryContent = dir => {
         return []
     }
 }
+
+exports.getTitle = dir => {
+    const s = dir.split('/')
+    return s[s.length - 1]
+}
+
+exports.createLink = link => {
+    return '/?dir=' + link
+}
