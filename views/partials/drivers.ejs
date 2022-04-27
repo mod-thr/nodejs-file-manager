@@ -1,0 +1,30 @@
+<div class="flex-center h-100">
+    <div class="row w-100 h-100">
+        <% drivers.map(driver => { %>
+            <div class="col-md-3 h-max-content">
+                <a href="/?dir=<%= driver.fs %> " class="btn btn-link text-decoration-none m-0 p-1 w-100 h-100">
+                    <div class="card-body m-d p-0">
+                        <h5 class="card-title"><%= driver.fs %></h5>
+                        <ul class="list-group my-1">
+                            <li class="list-group-item">
+                                <%= helpers.getSize(driver.available) %>
+                                Available
+                            </li>
+                            <li class="list-group-item">
+                                <%= helpers.getSize(driver.used) %>
+                                Used
+                            </li>
+                            <li class="list-group-item">
+                                <%= helpers.getSize(driver.size) %>
+                                Total
+                            </li>
+                        </ul>
+                        <div class="progress border-secondary border">
+                            <div class="progress-bar <%= helpers.getUseCssClass(driver.use) %>" role="progressbar" style="width: <%= driver.use %>%" aria-valuenow="<%= driver.use %>" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <% }) %> 
+    </div>
+</div>

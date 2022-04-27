@@ -1,0 +1,68 @@
+<nav class="d-flex flex-row">
+    <ul class="list-inline d-flex border border-primary rounded-bottom mx-2 h-2">
+        <li class="list-inline-item flex-center m-1" title="Reload">
+            <button class="btn btn-link" onclick="location.reload()">
+                <i class="bi bi-arrow-clockwise"></i>
+            </button>
+        </li>
+        <li class="list-inline-item flex-center m-1" title="Home">
+            <a href="/" class="btn btn-link">
+                <i class="bi bi-house"></i>
+            </a>
+        </li>
+        <li class="list-inline-item flex-center m-1" title="Open Directory">
+            <button class="btn btn-link">
+                <i class="bi bi-slash-lg"></i>
+            </button>
+        </li>
+    </ul>
+
+    <ul class="list-inline d-flex border border-primary rounded-bottom mx-2 h-2">
+        <% if(viewMode === 'icon'){ %>
+            <li class="list-inline-item flex-center m-1" title="View Lists">
+                <label class="btn btn-link">
+                    <i class="bi bi-view-list"></i>
+                    <input type="checkbox" class="d-none" onchange="changeViewMode('list')">
+                </label>
+            </li>
+        <% } else if(viewMode === 'list') { %>
+            <li class="list-inline-item flex-center m-1" title="View Icons">
+                <label class="btn btn-link">
+                    <i class="bi bi-grid-3x3-gap"></i>
+                    <input type="checkbox" class="d-none" onchange="changeViewMode('icon')">
+                </label>
+            </li>
+        <% } %> 
+    </ul>
+
+    <ul class="list-inline d-flex border border-primary rounded-bottom mx-2 h-2">
+        <% if(theme === 'light'){ %>
+            <li class="list-inline-item flex-center m-1" title="View Lists">
+                <label class="btn btn-link">
+                    <i class="bi bi-moon"></i>
+                    <input type="checkbox" class="d-none" onchange="chamgeTheme('dark')">
+                </label>
+            </li>
+            <% } else if(theme === 'dark') { %>
+            <li class="list-inline-item flex-center m-1" title="View Icons">
+                <label class="btn btn-link">
+                    <i class="bi bi-brightness-high"></i>
+                    <input type="checkbox" class="d-none" onchange="chamgeTheme('light')">
+                </label>
+            </li>
+        <% } %> 
+        <li class="list-inline-item flex-center m-1" title="Open Directory">
+            <button class="btn btn-link">
+                <i class="bi bi-gear"></i>
+            </button>
+        </li>
+    </ul>
+
+    <ul class="list-inline d-flex border border-primary rounded-bottom mx-2 h-2">
+        <li class="list-inline-item flex-center m-1" title="Reload">
+            <button class="btn btn-link">
+                <i class="bi bi-hurricane"></i>
+            </button>
+        </li>
+    </ul>
+</nav>

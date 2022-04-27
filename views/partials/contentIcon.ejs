@@ -1,0 +1,29 @@
+<div class="flex-center h-100">
+    <div class="row w-100 h-100 py-2">
+        <% contents.map(c => { %>
+            <% if (!c.fm.isPresentable()) return %> 
+            <div class="col-md-3 h-max-content content-box">
+                <a href="/?dir=<%= dir + '/' + c.content %> " class="btn btn-link text-decoration-none m-0 p-1 w-100 h-100">
+                    <div class="card-body m-d p-0 position-relative h-100">
+                        <div class="h-75 w-100 flex-center">
+                            <% if (c.fm.isFile()) { %>
+                                <div class="contentIconLg position-relative">
+                                    <i class="bi bi-file-earmark"></i>
+                                    <span class="position-absolute">
+                                        <%= c.fm.getFileExtension() %>
+                                    </span>
+                                </div>
+                            <% } else if (c.fm.isDirectory()) { %> 
+                                <div class="contentIconLg position-relative">
+                                    <i class="bi bi-folder"></i>
+                                    
+                                </div>
+                            <% } %> 
+                        </div>
+                        <p class="card-title contentName"><%= c.content %></p>
+                    </div>
+                </a>
+            </div>
+        <% }) %> 
+    </div>
+</div>

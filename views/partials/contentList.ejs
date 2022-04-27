@@ -1,0 +1,37 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Size</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% contents.map(c => { %> 
+            <% if (!c.fm.isPresentable()) return %> 
+            <tr>
+                <th scope="row">
+                    <% if (c.fm.isFile()) { %>
+                        <div class="contentIconSm position-relative">
+                            <i class="bi bi-file-earmark"></i>
+                            <span class="position-absolute">
+                                <%= c.fm.getFileExtension() %>
+                            </span>
+                        </div>
+                    <% } else if (c.fm.isDirectory()) { %> 
+                        <div class="contentIconSm position-relative">
+                            <i class="bi bi-folder"></i>
+                            
+                        </div>
+                    <% } %> 
+                </th>
+                <td><%= c.content %></td>
+                <td>
+                    <%= helpers.getSize(c.fm.getFileSize()) %> 
+                </td>
+                <td>@mdo</td>
+            </tr>
+        <% }) %> 
+    </tbody>
+</table>
