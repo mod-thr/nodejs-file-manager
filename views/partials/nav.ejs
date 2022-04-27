@@ -47,29 +47,29 @@
 
     <ul class="list-inline d-flex border border-primary rounded-bottom mx-2 h-2">
         <% if(theme === 'light'){ %>
-            <li class="list-inline-item flex-center m-1" title="View Lists">
+            <li class="list-inline-item flex-center m-1" title="Dark mode">
                 <label class="btn btn-link">
                     <i class="bi bi-moon"></i>
                     <input type="checkbox" class="d-none" onchange="changeTheme('dark')">
                 </label>
             </li>
             <% } else if(theme === 'dark') { %>
-            <li class="list-inline-item flex-center m-1" title="View Icons">
+            <li class="list-inline-item flex-center m-1" title="Light mode">
                 <label class="btn btn-link">
                     <i class="bi bi-brightness-high"></i>
                     <input type="checkbox" class="d-none" onchange="changeTheme('light')">
                 </label>
             </li>
         <% } %> 
-        <li class="list-inline-item flex-center m-1" title="Open Directory">
-            <button class="btn btn-link">
+        <li class="list-inline-item flex-center m-1" title="Settings">
+            <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#settingsModal">
                 <i class="bi bi-gear"></i>
             </button>
         </li>
     </ul>
 
     <ul class="list-inline d-flex border border-primary rounded-bottom mx-2 h-2">
-        <li class="list-inline-item flex-center m-1" title="Reload">
+        <li class="list-inline-item flex-center m-1" title="">
             <button class="btn btn-link">
                 <i class="bi bi-hurricane"></i>
             </button>

@@ -23,7 +23,7 @@ exports.getUseCssClass = use => {
 exports.getSize = size => {
     if (!size) return undefined
     const i = Math.floor( Math.log(size) / Math.log(1024) )
-    const str = (size / Math.pow(1024, i)).toFixed(2) * 1 + '' + ['B', 'kB', 'MB', 'GB', 'TB'][i]
+    const str = (size / Math.pow(1024, i)).toFixed(2) * 1 + '' + ['B', 'KB', 'MB', 'GB', 'TB'][i]
     return str
 }
 
