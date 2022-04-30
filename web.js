@@ -63,20 +63,9 @@ class Web {
 
         this.#app.get('/open', (req, res) => {
             const dir = req.query.dir
-            const viewMode = req.cookies.viewMode || 'icon'
-            const theme = req.cookies.theme || 'light'
-            const title = helpers.getTitle(dir)
-
             const fm = new FileManager(dir, '')
-            console.log(fm.getFileMime());
-
-            res.set('Content-Type', fm.getFileMime()).send('')
-            // res.render('open', {
-            //     dir,
-            //     viewMode,
-            //     theme,
-            //     title
-            // })
+            fm.openFileLocation()
+            return res.redirect('back')
         })
     }
 }

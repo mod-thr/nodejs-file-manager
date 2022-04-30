@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const { Blob } = require('buffer')
 
 class FileManager {
     #dir
@@ -53,6 +54,10 @@ class FileManager {
         } catch (err) {
             console.log(err.message);
         }
+    }
+
+    openFileLocation() {
+        require('child_process').exec(`start "" ${ this.#dir }`);    
     }
 
     getFileMime() {
