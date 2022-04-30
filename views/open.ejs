@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+    <%- include('./partials/head.ejs') %>
+    <body data-theme="<%= theme %>">
+        <div class="container mainContainer d-flex flex-column justify-content-between">
+            <%- include('./partials/nav.ejs') %>
+            <div class="row contentContainer">
+                <div class="col-md-12 h-100 py-2">
+                    
+                </div>
+                <!-- <div class="col-md-2">
+                    <%- //include('./partials/sidebar.ejs') %>
+                </div> -->
+            </div>
+        </div>
+        <%- include('./partials/modals/settingsModal.ejs') %>
+        <%- include('./partials/script.ejs') %>
+    </body>
+</html>

@@ -40,6 +40,6 @@ exports.getTitle = dir => {
     return s[s.length - 1]
 }
 
-exports.createLink = link => {
-    return '/?dir=' + link
+exports.createLink = (link, isFile = false) => {
+    return (isFile ? '/open' : '') + '/?dir=' + link
 }

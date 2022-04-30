@@ -21,12 +21,6 @@ getCookie = name => {
     return "";
 }
 
-document.querySelectorAll('tr[data-href]').forEach(el => {
-    el.addEventListener('click', () => {
-        document.location = el.dataset.href
-    })
-})
-
 const changeViewMode = mode => {
     setCookie('viewMode', mode)
     location.reload()
@@ -35,4 +29,41 @@ const changeViewMode = mode => {
 const changeTheme = theme => {
     setCookie('theme', theme)
     location.reload()
+}
+
+const getMeta = metaName => {
+    const metas = document.getElementsByTagName('meta');
+    for (let i = 0; i < metas.length; i++) {
+        if (metas[i].getAttribute('name') === metaName) {
+            return metas[i].getAttribute('content');
+        }
+    }
+    return '';
+}
+
+document.querySelectorAll('tr[data-href]').forEach(el => {
+    el.addEventListener('click', () => {
+        document.location = el.dataset.href
+    })
+})
+
+const searchInput = document.getElementById('searchInput')
+if (searchInput) {
+    searchInput.addEventListener('keyup', ev => {
+        const searchVal = searchInput.value.toLowerCase()
+        const viewMode = getMeta('viewMode')
+        document.querySelectorAll('[data-name]').forEach(el => {
+            if (viewMode === 'icon') {
+                el.style.display = 'block'
+            } else {
+                el.style.display = 'table-row'
+            }
+            if (searchVal === '') return
+
+            const name = el.dataset.name.toLowerCase()
+            if (!name.includes(searchVal)) {
+                el.style.display = 'none'
+            }
+        })
+    })
 }

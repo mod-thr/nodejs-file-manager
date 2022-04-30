@@ -9,7 +9,7 @@
     <tbody>
         <% contents.map(c => { %> 
             <% if (!c.fm.isPresentable()) return %> 
-            <tr data-href="<%= helpers.createLink(dir + '/' + c.content) %>">
+            <tr data-name="<%= c.content %>" data-href="<%= helpers.createLink(dir + '/' + c.content, c.fm.isFile()) %>">
                 <th scope="row">
                     <% if (c.fm.isFile()) { %>
                         <div class="contentIconSm position-relative">

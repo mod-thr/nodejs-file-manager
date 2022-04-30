@@ -45,6 +45,22 @@ class FileManager {
         if (!this.isFile()) return undefined
         return fs.statSync(this.#dir).size
     }
+
+    readFile() {
+        if (!this.isFile()) return null
+        try {
+            return fs.readFileSync(this.#dir, 'utf8')
+        } catch (err) {
+            console.log(err.message);
+        }
+    }
+
+    getFileMime() {
+        if (!this.isFile()) return null
+        const execSync = require('child_process').execSync;
+        const mimeType = execSync('file --mime-type -b "' + this.#dir + '"').toString();
+        return mimeType.trim();
+    }
 }
 
 module.exports = FileManager
