@@ -6,7 +6,23 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check form-switch my-2">
+                            <label class="form-check-label">
+                                Dark mode
+                                <input class="form-check-input" type="checkbox" role="switch" id="themeToggle" <%= theme === 'dark' ? 'checked' : '' %> >
+                            </label>
+                        </div>
+                        <div class="form-check form-switch my-2">
+                            <label class="form-check-label">
+                                List view
+                                <input class="form-check-input" type="checkbox" role="switch" id="viewToggle" <%= viewMode === 'list' ? 'checked' : '' %> >
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

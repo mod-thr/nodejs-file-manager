@@ -30,43 +30,16 @@
                 <i class="bi bi-folder2-open"></i>
             </a>
         </li>
-
-    </ul>
-
-    <ul class="list-inline d-flex border border-primary rounded-bottom mx-2 h-2">
-        <% if(viewMode === 'icon'){ %>
-            <li class="list-inline-item flex-center m-1" title="View Lists">
-                <label class="btn btn-link">
-                    <i class="bi bi-view-list"></i>
-                    <input type="checkbox" class="d-none" onchange="changeViewMode('list')">
-                </label>
-            </li>
-        <% } else if(viewMode === 'list') { %>
-            <li class="list-inline-item flex-center m-1" title="View Icons">
-                <label class="btn btn-link">
-                    <i class="bi bi-grid-3x3-gap"></i>
-                    <input type="checkbox" class="d-none" onchange="changeViewMode('icon')">
-                </label>
-            </li>
+        <% if (contents){ %>
+        <li class="list-inline-item flex-center m-1" title="Create folder">
+            <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#createDirectory">
+                <i class="bi bi-folder-plus"></i>
+            </button>
+        </li>
         <% } %> 
     </ul>
 
     <ul class="list-inline d-flex border border-primary rounded-bottom mx-2 h-2">
-        <% if(theme === 'light'){ %>
-            <li class="list-inline-item flex-center m-1" title="Dark mode">
-                <label class="btn btn-link">
-                    <i class="bi bi-moon"></i>
-                    <input type="checkbox" class="d-none" onchange="changeTheme('dark')">
-                </label>
-            </li>
-            <% } else if(theme === 'dark') { %>
-            <li class="list-inline-item flex-center m-1" title="Light mode">
-                <label class="btn btn-link">
-                    <i class="bi bi-brightness-high"></i>
-                    <input type="checkbox" class="d-none" onchange="changeTheme('light')">
-                </label>
-            </li>
-        <% } %> 
         <li class="list-inline-item flex-center m-1" title="Settings">
             <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#settingsModal">
                 <i class="bi bi-gear"></i>

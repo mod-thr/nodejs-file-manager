@@ -11,19 +11,21 @@ class Web {
     }
 
     start() {
-        console.log('started');
         const app = express()
         app.set('view engine', 'ejs')
         // app.set('views', 'views')
         // set static folder
         app.use(cookieParser())
         app.use(express.static(path.join(__dirname, 'static')))
+        app.use(express.json())
+        app.use(express.urlencoded({ extended: false }))
         const PORT = 3000
         app.listen(PORT, () => {
             console.log(`server started at port ${PORT}`);
         })
         this.#app = app
         this.route()
+        this.apiRoutes()
     }
 
     route() {
@@ -50,7 +52,7 @@ class Web {
                 })
             }
             
-            res.render('index', {
+            return res.render('index', {
                 title,
                 dir,
                 drivers,
@@ -65,6 +67,16 @@ class Web {
             const dir = req.query.dir
             const fm = new FileManager(dir, '')
             fm.openFileLocation()
+            return res.redirect('back')
+        })
+    }
+
+    apiRoutes() {
+        this.#app.post('/api/directory/create', (req, res) => {
+            // TODO | or : chars cannot use to create new folder
+            const recursive = req.body.recursive === 'on'
+            const fm = new FileManager(req.body.dir, '')
+            fm.createDirectory(req.body.dir_name, recursive)
             return res.redirect('back')
         })
     }

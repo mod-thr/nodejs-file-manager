@@ -67,3 +67,19 @@ if (searchInput) {
         })
     })
 }
+
+document.getElementById('viewToggle').addEventListener('change', ev => {
+    if (ev.target.checked) {
+        changeViewMode('list')
+    } else {
+        changeViewMode('icon')
+    }
+})
+
+document.getElementById('themeToggle').addEventListener('change', ev => {
+    if (ev.target.checked) {
+        changeTheme('dark')
+    } else {
+        changeTheme('light')
+    }
+})

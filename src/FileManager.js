@@ -66,6 +66,21 @@ class FileManager {
         const mimeType = execSync('file --mime-type -b "' + this.#dir + '"').toString();
         return mimeType.trim();
     }
+
+    createDirectory(dir_name, recursive) {
+        if (!this.isDirectory()) return
+        try {
+            if (!fs.existsSync(path.join(this.#dir, dir_name))) {
+                fs.mkdirSync(path.join(this.#dir, dir_name), { recursive })
+                return true
+            } else {
+                throw new Error('directory already exists')
+            }
+        } catch (err) {
+            console.log(err.message);
+            return err.message
+        }
+    }
 }
 
 module.exports = FileManager
