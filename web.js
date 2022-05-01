@@ -79,6 +79,13 @@ class Web {
             fm.createDirectory(req.body.dir_name, recursive)
             return res.redirect('back')
         })
+
+        this.#app.post('/api/directory/delete', (req, res) => {
+            const dir = req.body.dir
+            const fm = new FileManager(dir, '')
+            fm.removeDirectory()
+            return res.redirect(helpers.createLink(dir.split('/').slice(0, -1).join('/')))
+        })
     }
 }
 

@@ -81,6 +81,22 @@ class FileManager {
             return err.message
         }
     }
+
+    removeDirectory() {
+        if (this.isFile()) return
+        try {
+            if (fs.existsSync(this.#dir)) {
+                console.log(this.#dir);
+                fs.rmSync(this.#dir, { recursive: true, force: true })
+                return true
+            } else {
+                throw new Error('directory not found')
+            }
+        } catch (err) {
+            console.log(err.message);
+            return err.message
+        }
+    }
 }
 
 module.exports = FileManager
