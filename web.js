@@ -1,7 +1,8 @@
 const express = require('express')
 const path = require('path')
-const FileManager = require('./src/FileManager')
 const cookieParser = require("cookie-parser")
+const args = require('args-parser')(process.argv)
+const FileManager = require('./src/FileManager')
 const helpers = require('./src/helper')
 
 class Web {
@@ -21,7 +22,11 @@ class Web {
         app.use(express.urlencoded({ extended: false }))
         const PORT = 3000
         app.listen(PORT, () => {
-            console.log(`server started at port ${PORT}`);
+            if (args.host) {
+                console.log(`server started at http://${args.host}:${PORT}`);
+            } else {
+                console.log(`server started at port ${PORT}`);
+            }
         })
         this.#app = app
         this.route()

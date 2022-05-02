@@ -41,38 +41,35 @@ const getMeta = metaName => {
     return '';
 }
 
-document.getElementById('checkAll').addEventListener('change', ev => {
+document.getElementById('checkAll')?.addEventListener('change', ev => {
     document.querySelectorAll('.rowCheckbox').forEach(el => {
         el.checked = ev.target.checked
     })
 })
 
-document.querySelectorAll('.rowCheckbox').forEach(el => {
+document.querySelectorAll('.rowCheckbox')?.forEach(el => {
     el.addEventListener('change', ev => {
         console.log(ev);
     })
 })
 
-const searchInput = document.getElementById('searchInput')
-if (searchInput) {
-    searchInput.addEventListener('keyup', ev => {
-        const searchVal = searchInput.value.toLowerCase()
-        const viewMode = getMeta('viewMode')
-        document.querySelectorAll('[data-name]').forEach(el => {
-            if (viewMode === 'icon') {
-                el.style.display = 'block'
-            } else {
-                el.style.display = 'table-row'
-            }
-            if (searchVal === '') return
+document.getElementById('searchInput')?.addEventListener('keyup', ev => {
+    const searchVal = searchInput.value.toLowerCase()
+    const viewMode = getMeta('viewMode')
+    document.querySelectorAll('[data-name]').forEach(el => {
+        if (viewMode === 'icon') {
+            el.style.display = 'block'
+        } else {
+            el.style.display = 'table-row'
+        }
+        if (searchVal === '') return
 
-            const name = el.dataset.name.toLowerCase()
-            if (!name.includes(searchVal)) {
-                el.style.display = 'none'
-            }
-        })
+        const name = el.dataset.name.toLowerCase()
+        if (!name.includes(searchVal)) {
+            el.style.display = 'none'
+        }
     })
-}
+})
 
 document.getElementById('viewToggle').addEventListener('change', ev => {
     if (ev.target.checked) {
