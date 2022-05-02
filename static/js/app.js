@@ -41,9 +41,15 @@ const getMeta = metaName => {
     return '';
 }
 
-document.querySelectorAll('tr[data-href]').forEach(el => {
-    el.addEventListener('click', () => {
-        document.location = el.dataset.href
+document.getElementById('checkAll').addEventListener('change', ev => {
+    document.querySelectorAll('.rowCheckbox').forEach(el => {
+        el.checked = ev.target.checked
+    })
+})
+
+document.querySelectorAll('.rowCheckbox').forEach(el => {
+    el.addEventListener('change', ev => {
+        console.log(ev);
     })
 })
 

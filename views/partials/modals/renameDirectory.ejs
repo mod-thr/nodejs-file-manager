@@ -1,0 +1,23 @@
+<div class="modal fade" id="renameDirectory" tabindex="-1" aria-labelledby="renameDirectory" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="/api/directory/rename">
+                <input type="hidden" name="dir" value="<%= dir %>">
+                <input type="hidden" name="name" value="<%= title %>">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="renameDirectory">Rename <%= title %></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group my-2">
+                        <input type="text" class="form-control" name="new_name"  value="<%= title %>">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Rename</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

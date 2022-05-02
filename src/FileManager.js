@@ -3,6 +3,7 @@ const path = require('path')
 const { Blob } = require('buffer')
 
 class FileManager {
+    #parent
     #dir
     #name
     #forbiddenNames = [
@@ -11,6 +12,7 @@ class FileManager {
     ]
 
     constructor(dir, name) {
+        this.#parent = dir.split('/').slice(0, -1).join('/')
         this.#dir = path.join(dir, name)
         this.#name = name
     }
@@ -88,6 +90,21 @@ class FileManager {
             if (fs.existsSync(this.#dir)) {
                 console.log(this.#dir);
                 fs.rmSync(this.#dir, { recursive: true, force: true })
+                return true
+            } else {
+                throw new Error('directory not found')
+            }
+        } catch (err) {
+            console.log(err.message);
+            return err.message
+        }
+    }
+
+    renameDirectory(new_name) {
+        if (this.isFile()) return
+        try {
+            if (fs.existsSync(this.#dir)) {
+                fs.renameSync(this.#dir, path.join(this.#parent, new_name))
                 return true
             } else {
                 throw new Error('directory not found')

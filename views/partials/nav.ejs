@@ -31,14 +31,19 @@
             </a>
         </li>
         <% if (contents){ %>
-        <li class="list-inline-item flex-center m-1" title="Create folder">
+        <li class="list-inline-item flex-center m-1" title="Create folder in <%= title %>">
             <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#createDirectory">
                 <i class="bi bi-folder-plus"></i>
             </button>
         </li>
-        <li class="list-inline-item flex-center m-1" title="Delete folder">
+        <li class="list-inline-item flex-center m-1" title="Delete <%= title %> folder">
             <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#removeDirectory">
                 <i class="bi bi-folder-minus"></i>
+            </button>
+        </li>
+        <li class="list-inline-item flex-center m-1" title="Rename <%= title %> folder">
+            <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#renameDirectory">
+                <i class="bi bi-input-cursor-text"></i>
             </button>
         </li>
         <% } %> 

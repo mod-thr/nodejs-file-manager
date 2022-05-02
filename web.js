@@ -86,6 +86,12 @@ class Web {
             fm.removeDirectory()
             return res.redirect(helpers.createLink(dir.split('/').slice(0, -1).join('/')))
         })
+
+        this.#app.post('/api/directory/rename', (req, res) => {
+            const fm = new FileManager(req.body.dir, '')
+            fm.renameDirectory(req.body.new_name)
+            return res.redirect(helpers.createLink(req.body.dir.split('/').slice(0, -1).join('/') + '/' + req.body.new_name))
+        })
     }
 }
 

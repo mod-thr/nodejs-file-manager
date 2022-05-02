@@ -83,10 +83,6 @@
     left:initial;
 }
 
-tr {
-    cursor: pointer;
-}
-
 .dropdown-toggle.no-arrow::after {
     content: none;
 }

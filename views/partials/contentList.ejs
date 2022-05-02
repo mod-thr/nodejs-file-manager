@@ -1,6 +1,9 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th scope="col">
+                <input type="checkbox" id="checkAll">
+            </th>
             <th scope="col"> </th>
             <th scope="col">Name</th>
             <th scope="col">Size</th>
@@ -9,8 +12,11 @@
     <tbody>
         <% contents.map(c => { %> 
             <% if (!c.fm.isPresentable()) return %> 
-            <tr data-name="<%= c.content %>" data-href="<%= helpers.createLink(dir + '/' + c.content, c.fm.isFile()) %>">
+            <tr data-name="<%= c.content %>">
                 <th scope="row">
+                    <input type="checkbox" name="<%= c.content %>" class="rowCheckbox">
+                </th>
+                <th>
                     <% if (c.fm.isFile()) { %>
                         <div class="contentIconSm position-relative">
                             <i class="bi bi-file-earmark"></i>
@@ -25,7 +31,9 @@
                     <% } %> 
                 </th>
                 <td>
-                    <%= c.content %>
+                    <a href="<%= helpers.createLink(dir + '/' + c.content, c.fm.isFile()) %>">
+                        <%= c.content %>
+                    </a>
                 </td>
                 <td>
                     <%= helpers.getSize(c.fm.getFileSize()) %> 
