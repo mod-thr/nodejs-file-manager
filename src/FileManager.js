@@ -88,7 +88,21 @@ class FileManager {
         if (this.isFile()) return
         try {
             if (fs.existsSync(this.#dir)) {
-                console.log(this.#dir);
+                fs.rmSync(this.#dir, { recursive: true, force: true })
+                return true
+            } else {
+                throw new Error('directory not found')
+            }
+        } catch (err) {
+            console.log(err.message);
+            return err.message
+        }
+    }
+
+    removeFile() {
+        if (this.isDirectory()) return
+        try {
+            if (fs.existsSync(this.#dir)) {
                 fs.rmSync(this.#dir, { recursive: true, force: true })
                 return true
             } else {
@@ -108,6 +122,21 @@ class FileManager {
                 return true
             } else {
                 throw new Error('directory not found')
+            }
+        } catch (err) {
+            console.log(err.message);
+            return err.message
+        }
+    }
+
+    renameFile(new_name) {
+        if (this.isDirectory()) return
+        try {
+            if (fs.existsSync(this.#dir)) {
+                fs.renameSync(this.#dir, path.join(this.#parent, new_name))
+                return true
+            } else {
+                throw new Error('file not found')
             }
         } catch (err) {
             console.log(err.message);

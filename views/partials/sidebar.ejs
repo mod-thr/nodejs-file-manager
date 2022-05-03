@@ -3,10 +3,30 @@
     <input id="searchInput" type="text" class="form-control" placeholder="Search in <%= title %> ">
 </form>
 <% } %> 
-<ul class="list-group">
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-    <li class="list-group-item">A fourth item</li>
-    <li class="list-group-item">And a fifth one</li>
+<ul class="list-group" id="sidebarActions">
+    <li class="list-group-item">
+        <button class="btn d-block w-100" disabled id="deleteAll">
+            Delete all
+        </button>
+    </li>
+    <li class="list-group-item">
+        <button class="btn d-block w-100" disabled id="renameAll" data-bs-toggle="modal" data-bs-target="#renameAllModal">
+            Rename all
+        </button>
+    </li>
+    <li class="list-group-item">
+        <button class="btn d-block w-100" id="">
+            Cut all
+        </button>
+    </li>
+    <li class="list-group-item">
+        <button class="btn d-block w-100" id="">
+            Copy all
+        </button>
+    </li>
+    <li class="list-group-item">
+        <button class="btn d-block w-100" id="">
+            Paste
+        </button>
+    </li>
 </ul>

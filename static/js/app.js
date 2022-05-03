@@ -1,3 +1,5 @@
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.defaults.headers.post['Accept'] = 'application/json'
 setCookie = (name, value, exDays = 90) => {
     const d = new Date();
     d.setTime(d.getTime() + (exDays * 24 * 60 * 60 * 1000));
@@ -41,16 +43,62 @@ const getMeta = metaName => {
     return '';
 }
 
-document.getElementById('checkAll')?.addEventListener('change', ev => {
+const sidebarButtons = enable => {
+    document.querySelectorAll('#sidebarActions button')?.forEach(el => {
+        el.disabled = enable
+    })
+}
+
+let selectedContents = [] 
+const checkAll = document.getElementById('checkAll')
+checkAll?.addEventListener('change', ev => {
+    while (selectedContents.length > 0) {
+        selectedContents.pop()
+    }
     document.querySelectorAll('.rowCheckbox').forEach(el => {
         el.checked = ev.target.checked
+        selectedContents.push(el.dataset.dir)
     })
+    sidebarButtons(!ev.target.checked)
 })
 
 document.querySelectorAll('.rowCheckbox')?.forEach(el => {
     el.addEventListener('change', ev => {
-        console.log(ev);
+        if (ev.target.checked) {
+            selectedContents.push(el.dataset.dir)
+        } else {
+            selectedContents = selectedContents.filter(value => {
+                return value !== el.dataset.dir
+            })
+        }
+        sidebarButtons(selectedContents.length === 0)
     })
+})
+
+document.getElementById('deleteAll')?.addEventListener('click', ev => {
+    if (ev.target.disabled) return
+    ev.target.disabled = true
+    axios.post('/api/group/delete', {
+        dirs: selectedContents
+    }).then(res => {
+        checkAll.checked = false
+        location.reload()
+    }).catch(err => {
+        
+    })
+})
+
+document.getElementById('renameAll').addEventListener('click', ev => {
+    const renameAllModalTitle = document.getElementById('renameAllModalTitle')
+    const renameAllModalBody = document.getElementById('renameAllModalBody')
+    
+    renameAllModalTitle.innerText = `Renaming ${selectedContents.length} files`
+    const inputs = selectedContents.map(el => {
+        const name = el.split('/')
+        return `<div class="form-group my-2"><input type="text" name="${el}" value="${name[name.length - 1]}" class="form-control"></div>`
+    }).join('')
+
+    renameAllModalBody.innerHTML = inputs
 })
 
 document.getElementById('searchInput')?.addEventListener('keyup', ev => {

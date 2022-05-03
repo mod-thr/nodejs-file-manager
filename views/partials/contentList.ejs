@@ -12,9 +12,9 @@
     <tbody>
         <% contents.map(c => { %> 
             <% if (!c.fm.isPresentable()) return %> 
-            <tr data-name="<%= c.content %>">
+            <tr data-name="<%= c.content %>" >
                 <th scope="row">
-                    <input type="checkbox" name="<%= c.content %>" class="rowCheckbox">
+                    <input type="checkbox" name="<%= c.content %>" class="rowCheckbox" data-dir="<%= dir + '/' + c.content %>"> 
                 </th>
                 <th>
                     <% if (c.fm.isFile()) { %>

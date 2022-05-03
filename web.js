@@ -97,6 +97,32 @@ class Web {
             fm.renameDirectory(req.body.new_name)
             return res.redirect(helpers.createLink(req.body.dir.split('/').slice(0, -1).join('/') + '/' + req.body.new_name))
         })
+
+        this.#app.post('/api/group/delete', (req, res) => {
+            const dirs = req.body.dirs
+            dirs.forEach(dir => {
+                const fm = new FileManager(dir, '')
+                if (fm.isDirectory()) {
+                    fm.removeDirectory()
+                } else if (fm.isFile()) {
+                    fm.removeFile()
+                }
+            })
+            return res.status(204).json({ message: 'files deleted'})
+        })
+
+        this.#app.post('/api/group/rename', (req, res) => {
+            const dirs = req.body
+            Object.entries(dirs).forEach(dir => {
+                const fm = new FileManager(dir[0], '')
+                if (fm.isDirectory()) {
+                    fm.renameDirectory(dir[1])
+                } else if (fm.isFile()) {
+                    fm.renameFile(dir[1])
+                }
+            })
+            return res.redirect('back')
+        })
     }
 }
 
