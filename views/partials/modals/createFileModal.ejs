@@ -1,0 +1,25 @@
+<div class="modal fade" id="createFile" tabindex="-1" aria-labelledby="createFile" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="/api/file/create">
+                <input type="hidden" name="dir" value="<%= dir %>">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createFile">Create new file in <%= title %></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group my-2">
+                        <input type="text" class="form-control" name="file_name" placeholder="File name eg: example.txt">
+                    </div>
+                    <div class="form-group my-2">
+                        <textarea class="form-control" name="file_content" placeholder="File content"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -143,6 +143,15 @@ class FileManager {
             return err.message
         }
     }
+
+    createFile(file_name, file_content = '') {
+        try {
+            fs.writeFileSync(path.join(this.#dir, file_name), file_content)
+        } catch (err) {
+            console.log(err.message);
+            return err.message
+        }
+    }
 }
 
 module.exports = FileManager

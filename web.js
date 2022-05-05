@@ -123,6 +123,13 @@ class Web {
             })
             return res.redirect('back')
         })
+
+        this.#app.post('/api/file/create', (req, res) => {
+            const dir = req.body.dir
+            const fm = new FileManager(dir, '')
+            fm.createFile(req.body.file_name, req.body.file_content)
+            return res.redirect('back')
+        })
     }
 }
 
