@@ -1,6 +1,8 @@
 const fs = require('fs')
+const child_process = require('child_process')
 const path = require('path')
 const { Blob } = require('buffer')
+const helpers = require('./helper')
 
 class FileManager {
     #parent
@@ -12,13 +14,22 @@ class FileManager {
     ]
 
     constructor(dir, name) {
-        this.#parent = dir.split('/').slice(0, -1).join('/')
+        this.#parent = helpers.getPreviousDir(dir)
         this.#dir = path.join(dir, name)
         this.#name = name
     }
 
+    get parent() {
+        return this.#parent
+    }
+
     isPresentable() {
         return !this.#forbiddenNames.includes(this.#name)
+    }
+
+    isDriveBaseDir(){
+        const s = this.#dir.split('/')
+        return s.length === 1 && s[0].endsWith(':.')
     }
 
     isFile() {
@@ -59,13 +70,12 @@ class FileManager {
     }
 
     openFileLocation() {
-        require('child_process').exec(`start "" ${ this.#dir }`);    
+        child_process.exec(`start "" ${ this.#dir }`);    
     }
 
     getFileMime() {
         if (!this.isFile()) return null
-        const execSync = require('child_process').execSync;
-        const mimeType = execSync('file --mime-type -b "' + this.#dir + '"').toString();
+        const mimeType = child_process.execSync('file --mime-type -b "' + this.#dir + '"').toString();
         return mimeType.trim();
     }
 

@@ -1,5 +1,6 @@
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.headers.post['Accept'] = 'application/json'
+
 setCookie = (name, value, exDays = 90) => {
     const d = new Date();
     d.setTime(d.getTime() + (exDays * 24 * 60 * 60 * 1000));
@@ -44,7 +45,7 @@ const getMeta = metaName => {
 }
 
 const sidebarButtons = enable => {
-    document.querySelectorAll('#sidebarActions button')?.forEach(el => {
+    document.querySelectorAll('#sidebarActions button:not(.enable)')?.forEach(el => {
         el.disabled = enable
     })
 }
@@ -88,7 +89,7 @@ document.getElementById('deleteAll')?.addEventListener('click', ev => {
     })
 })
 
-document.getElementById('renameAll').addEventListener('click', ev => {
+document.getElementById('renameAll')?.addEventListener('click', ev => {
     const renameAllModalTitle = document.getElementById('renameAllModalTitle')
     const renameAllModalBody = document.getElementById('renameAllModalBody')
     
@@ -101,6 +102,7 @@ document.getElementById('renameAll').addEventListener('click', ev => {
     renameAllModalBody.innerHTML = inputs
 })
 
+// search in directory
 document.getElementById('searchInput')?.addEventListener('keyup', ev => {
     const searchVal = searchInput.value.toLowerCase()
     const viewMode = getMeta('viewMode')
@@ -119,7 +121,7 @@ document.getElementById('searchInput')?.addEventListener('keyup', ev => {
     })
 })
 
-document.getElementById('viewToggle').addEventListener('change', ev => {
+document.getElementById('viewToggle')?.addEventListener('change', ev => {
     if (ev.target.checked) {
         changeViewMode('list')
     } else {
@@ -127,7 +129,7 @@ document.getElementById('viewToggle').addEventListener('change', ev => {
     }
 })
 
-document.getElementById('themeToggle').addEventListener('change', ev => {
+document.getElementById('themeToggle')?.addEventListener('change', ev => {
     if (ev.target.checked) {
         changeTheme('dark')
     } else {

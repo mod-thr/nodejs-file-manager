@@ -43,3 +43,7 @@ exports.getTitle = dir => {
 exports.createLink = (link, isFile = false) => {
     return (isFile ? '/open' : '') + '/?dir=' + link
 }
+
+exports.getPreviousDir = dir => {
+    return dir.split('/').slice(0, -1).join('/')
+}

@@ -1,5 +1,12 @@
 <nav class="d-flex flex-row">
     <ul class="list-inline d-flex border border-primary rounded-bottom mx-2 h-2">
+        <% if (contents){ %>
+        <li class="list-inline-item flex-center m-1" title="Go back">
+            <a href="<%= fm.isDriveBaseDir() ? '/' : helpers.createLink(fm.parent) %>" class="btn btn-link">
+                <i class="bi bi-arrow-left"></i>
+            </a>
+        </li>
+        <% } %> 
         <li class="list-inline-item flex-center m-1" title="Reload">
             <button class="btn btn-link" onclick="location.reload()">
                 <i class="bi bi-arrow-clockwise"></i>

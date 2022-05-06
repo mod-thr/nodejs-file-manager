@@ -42,6 +42,7 @@ class Web {
             let drivers = null
             let title = null
             let contents = null
+            let fm = null
 
             if (!dir || dir === '') {
                 drivers = await helpers.getDriversList()
@@ -49,6 +50,7 @@ class Web {
             } else {
                 title = helpers.getTitle(dir)
                 contents = helpers.getDirectoryContent(dir)
+                fm = new FileManager(dir, '')
                 contents = contents.map(content => {
                     return {
                         content,
@@ -64,7 +66,8 @@ class Web {
                 viewMode,
                 theme,
                 contents,
-                helpers
+                helpers,
+                fm
             })
         })
 
@@ -89,13 +92,13 @@ class Web {
             const dir = req.body.dir
             const fm = new FileManager(dir, '')
             fm.removeDirectory()
-            return res.redirect(helpers.createLink(dir.split('/').slice(0, -1).join('/')))
+            return res.redirect(helpers.createLink(helpers.getPreviousDir(dir)))
         })
 
         this.#app.post('/api/directory/rename', (req, res) => {
             const fm = new FileManager(req.body.dir, '')
             fm.renameDirectory(req.body.new_name)
-            return res.redirect(helpers.createLink(req.body.dir.split('/').slice(0, -1).join('/') + '/' + req.body.new_name))
+            return res.redirect(helpers.createLink(path.join(helpers.getPreviousDir(req.body.dir), req.body.new_name)))
         })
 
         this.#app.post('/api/group/delete', (req, res) => {
