@@ -38,6 +38,7 @@ class Web {
             const dir = req.query.dir
             const viewMode = req.cookies.viewMode || 'icon'
             const theme = req.cookies.theme || 'light'
+            const pasteAction = (req.cookies.pasteAction) || null
 
             let drivers = null
             let title = null
@@ -67,7 +68,8 @@ class Web {
                 theme,
                 contents,
                 helpers,
-                fm
+                fm,
+                pasteAction
             })
         })
 
@@ -125,6 +127,21 @@ class Web {
                 }
             })
             return res.redirect('back')
+        })
+
+        this.#app.post('/api/group/paste', (req, res) => {
+            const dirs = req.body.contents
+            const action = req.body.action
+            const destination = req.body.destination
+            dirs.forEach(dir => {
+                const fm = new FileManager(dir, '')
+                if (action === 'copy') {
+                    // fm.copyTo(destination)
+                } else if (action === 'cut') {
+                    // fm.moveTo(destination)
+                }
+            })
+            return res.json({ 'message': 'paste done' })
         })
 
         this.#app.post('/api/file/create', (req, res) => {

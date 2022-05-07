@@ -15,17 +15,17 @@
         </button>
     </li>
     <li class="list-group-item">
-        <button class="btn d-block w-100" id="">
+        <button class="btn d-block w-100" disabled id="cutAll">
             Cut all
         </button>
     </li>
     <li class="list-group-item">
-        <button class="btn d-block w-100" id="">
+        <button class="btn d-block w-100" disabled id="copyAll">
             Copy all
         </button>
     </li>
-    <li class="list-group-item">
-        <button class="btn d-block w-100 enable" id="">
+    <li class="list-group-item" <%= !pasteAction && 'style=display:none' %> id="pasteContainer">
+        <button class="btn d-block w-100 enable" id="pasteAll">
             Paste
         </button>
     </li>

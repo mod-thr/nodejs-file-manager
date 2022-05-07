@@ -1,4 +1,5 @@
 const fs = require('fs')
+const fse = require('fs-extra')
 const child_process = require('child_process')
 const path = require('path')
 const { Blob } = require('buffer')
@@ -148,6 +149,26 @@ class FileManager {
             } else {
                 throw new Error('file not found')
             }
+        } catch (err) {
+            console.log(err.message);
+            return err.message
+        }
+    }
+
+    copyTo(destination) {
+        try {
+            fs.copy()
+            return true
+        } catch (err) {
+            console.log(err.message);
+            return err.message
+        }
+    }
+
+    moveTo(destination) {
+        try {
+            fse.moveSync(this.#dir, destination)
+            return true
         } catch (err) {
             console.log(err.message);
             return err.message

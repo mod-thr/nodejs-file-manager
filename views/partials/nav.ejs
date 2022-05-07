@@ -43,16 +43,18 @@
                 <i class="bi bi-folder-plus"></i>
             </button>
         </li>
-        <li class="list-inline-item flex-center m-1" title="Delete <%= title %> folder">
-            <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#removeDirectory">
-                <i class="bi bi-folder-minus"></i>
-            </button>
-        </li>
-        <li class="list-inline-item flex-center m-1" title="Rename <%= title %> folder">
-            <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#renameDirectory">
-                <i class="bi bi-input-cursor-text"></i>
-            </button>
-        </li>
+        <% if (!fm.isDriveBaseDir()) { %>
+            <li class="list-inline-item flex-center m-1" title="Delete <%= title %> folder">
+                <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#removeDirectory">
+                    <i class="bi bi-folder-minus"></i>
+                </button>
+            </li>
+            <li class="list-inline-item flex-center m-1" title="Rename <%= title %> folder">
+                <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#renameDirectory">
+                    <i class="bi bi-input-cursor-text"></i>
+                </button>
+            </li>
+        <% } %> 
         <li class="list-inline-item flex-center m-1" title="Create a file in <%= title %>">
             <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#createFile">
                 <i class="bi bi-file-earmark-plus"></i>

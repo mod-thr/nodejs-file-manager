@@ -89,6 +89,44 @@ document.getElementById('deleteAll')?.addEventListener('click', ev => {
     })
 })
 
+const pasteAction = (action, contents) => {
+    setCookie('pasteAction', JSON.stringify({
+        action,
+        contents
+    }), 1)
+    document.querySelectorAll('.rowCheckbox').forEach(el => {
+        el.checked = false
+    })
+    checkAll.checked = false
+    document.getElementById('pasteContainer').style.display = 'block'
+}
+
+document.getElementById('cutAll')?.addEventListener('click', ev => {
+    if (ev.target.disabled) return
+    pasteAction('cut', selectedContents)
+    sidebarButtons(true)
+})
+document.getElementById('copyAll')?.addEventListener('click', ev => {
+    if (ev.target.disabled) return
+    pasteAction('copy', selectedContents)
+    sidebarButtons(true)
+})
+document.getElementById('pasteAll')?.addEventListener('click', ev => {
+    if (ev.target.disabled) return
+    const pasteAction = JSON.parse(getCookie('pasteAction'))
+    axios.post('/api/group/paste', {
+        'action': pasteAction.action,
+        'contents': pasteAction.contents,
+        'destination': getMeta('dir')
+    }).then(res => {
+        setCookie('pasteAction', null, -1)
+        // location.reload()
+    }).catch(err => {
+
+    })
+    sidebarButtons(true)
+})
+
 document.getElementById('renameAll')?.addEventListener('click', ev => {
     const renameAllModalTitle = document.getElementById('renameAllModalTitle')
     const renameAllModalBody = document.getElementById('renameAllModalBody')
